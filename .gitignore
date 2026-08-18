@@ -1,10 +1,33 @@
-node_modules/
+# Environment variables
 .env
+.env.*
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
 .venv/
 venv/
 __pycache__/
 *.pyc
 *.pkl
+
+# Build
 dist/
 build/
+
+# IDE / editors
 .vscode/
+.idea/
+.agents/
+.claude/
+.windsurf/
+
+# OS
+.DS_Store
+Thumbs.db
+# Tool-generated files
+skills-lock.json
