@@ -1,0 +1,119 @@
+import { useState } from "react";
+
+const filters = ["ALL", "CRITICAL", "WARNING", "ACKNOWLEDGED", "RESOLVED"];
+
+export default function Alerts() {
+  const [activeFilter, setActiveFilter] = useState("ALL");
+  const [filter, setFilter] = useState("ALL");
+
+  const filteredAlerts = alerts.filter((alert) => {
+    switch (activeFilter) {
+      case "CRITICAL":
+        return alert.severity === "CRITICAL";
+      case "WARNING":
+        return alert.severity === "WARNING";
+      case "ACKNOWLEDGED":
+        return alert.acknowledged === true;
+      case "RESOLVED":
+        return alert.resolved === true;
+      default:
+        return true;
+    }
+  });
+
+
+
+  return (
+    <section className="app-page">
+      <div className="page-intro">
+        <span className="page-kicker">INCIDENT MANAGEMENT</span>
+
+        <h2>Alerts</h2>
+
+        <p>
+          Review and manage infrastructure alerts reported by the backend.
+        </p>
+      </div>
+
+      <section className="panel alerts-panel">
+        <div className="alert-filter-bar">
+  <button
+    type="button"
+    className={`alert-filter all ${activeFilter === "ALL" ? "active" : ""}`}
+    onClick={() => setActiveFilter("ALL")}
+  >
+    <span>All</span>
+    <b>{alerts.length}</b>
+  </button>
+
+  <button
+    type="button"
+    className={`alert-filter critical ${activeFilter === "CRITICAL" ? "active" : ""}`}
+    onClick={() => setActiveFilter("CRITICAL")}
+  >
+    <span className="filter-dot critical-dot"></span>
+    <span>Critical</span>
+    <b>{alerts.filter(a => a.severity === "CRITICAL").length}</b>
+  </button>
+
+  <button
+    type="button"
+    className={`alert-filter warning ${activeFilter === "WARNING" ? "active" : ""}`}
+    onClick={() => setActiveFilter("WARNING")}
+  >
+    <span className="filter-dot warning-dot"></span>
+    <span>Warning</span>
+    <b>{alerts.filter(a => a.severity === "WARNING").length}</b>
+  </button>
+
+  <button
+    type="button"
+    className={`alert-filter acknowledged ${activeFilter === "ACKNOWLEDGED" ? "active" : ""}`}
+    onClick={() => setActiveFilter("ACKNOWLEDGED")}
+  >
+    <span>Acknowledged</span>
+    <b>{alerts.filter(a => a.acknowledged).length}</b>
+  </button>
+
+  <button
+    type="button"
+    className={`alert-filter resolved ${activeFilter === "RESOLVED" ? "active" : ""}`}
+    onClick={() => setActiveFilter("RESOLVED")}
+  >
+    <span>Resolved</span>
+    <b>{alerts.filter(a => a.resolved).length}</b>
+  </button>
+</div>
+
+<div className="alerts-toolbar">
+          <div className="filter-group">
+            {filters.map((item) => (
+              <button
+                key={item}
+                className={`filter-button ${
+                  filter === item ? "active" : ""
+                }`}
+                onClick={() => setFilter(item)}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+
+          <span className="integration-badge">API DATA</span>
+        </div>
+
+        <div className="alerts-empty">
+          <div className="integration-icon">△</div>
+
+          <h3>No backend alerts loaded</h3>
+
+          <p>
+            Alerts will appear here when the backend alerts endpoint is
+            connected. No fake alerts are being displayed.
+          </p>
+        </div>
+      </section>
+    </section>
+  );
+}

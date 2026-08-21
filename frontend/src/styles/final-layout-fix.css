@@ -1,0 +1,101 @@
+
+/* ============================================================
+   FINAL SIDEBAR / ADMIN LAYOUT FIX
+   Keeps navigation and Admin independent from page scrolling.
+   ============================================================ */
+
+.app-shell {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-sidebar {
+  position: relative;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  z-index: 100;
+}
+
+.sidebar-section {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-footer {
+  flex: 0 0 auto;
+  margin-top: auto;
+  position: relative;
+  z-index: 120;
+  background: inherit;
+}
+
+/* Main application gets its own scroll area */
+.app-main {
+  min-width: 0;
+  min-height: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Admin stays inside the sidebar */
+.admin-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 150;
+}
+
+/* Admin popup opens upward, never over dashboard cards */
+.admin-menu {
+  position: absolute !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: calc(100% + 10px) !important;
+  top: auto !important;
+  width: min(230px, calc(100vw - 24px));
+  max-width: 230px;
+  z-index: 9999;
+  box-sizing: border-box;
+}
+
+/* When sidebar is collapsed, keep the Admin button accessible */
+.sidebar-collapsed .sidebar-footer {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.sidebar-collapsed .admin-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-collapsed .admin-menu {
+  left: 52px !important;
+  bottom: 0 !important;
+}
+
+/* Prevent popovers from being clipped by sidebar */
+.app-sidebar,
+.sidebar-footer,
+.admin-wrapper {
+  overflow: visible;
+}
+
+/* Smooth, professional scrolling */
+.app-main,
+.sidebar-section {
+  scrollbar-width: thin;
+}
+
+/* Small screens */
+@media (max-width: 700px) {
+  .admin-menu {
+    max-width: 210px;
+  }
+}
