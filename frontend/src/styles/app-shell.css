@@ -322,47 +322,7 @@
   font-size: 12px;
 }
 
-@media (max-width: 760px) {
-  .app-sidebar {
-    width: 76px;
-    min-width: 76px;
-  }
 
-  .brand-text,
-  .sidebar-label,
-  .sidebar-nav-item:not(.active) span:not(.nav-icon),
-  .sidebar-nav-item span:not(.nav-icon),
-  .connection-status div,
-  .user-area div:not(.user-avatar) {
-    display: none;
-  }
-
-  .sidebar-header {
-    justify-content: center;
-    padding: 0;
-  }
-
-  .sidebar-nav-item {
-    justify-content: center;
-    padding: 0;
-  }
-
-  .sidebar-toggle {
-    display: none;
-  }
-
-  .app-header {
-    padding: 14px 18px;
-  }
-
-  .header-status {
-    display: none;
-  }
-
-  .app-content {
-    padding: 22px 18px;
-  }
-}
 
 /* =========================================================
    DAY / NIGHT THEME
@@ -1198,5 +1158,811 @@
   .admin-detail-panel,
   .admin-menu {
     width: min(300px, calc(100vw - 40px));
+  }
+}
+
+/* ===== PROFESSIONAL ADMIN EDIT PROFILE ===== */
+
+.admin-menu {
+  width: 340px;
+  min-width: 340px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+
+.admin-menu-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .55;
+  margin-bottom: 18px;
+}
+
+.admin-edit-panel {
+  width: 100%;
+}
+
+.admin-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.admin-edit-header h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.admin-edit-header small {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+
+.admin-close-edit {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(130,155,200,.25);
+  border-radius: 8px;
+  background: rgba(255,255,255,.04);
+  color: inherit;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.admin-close-edit:hover {
+  background: rgba(255,255,255,.09);
+}
+
+.admin-edit-panel label {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.admin-edit-panel label > span {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: .65;
+}
+
+.admin-edit-panel input {
+  width: 100%;
+  height: 42px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  border: 1px solid rgba(110,140,190,.3);
+  border-radius: 9px;
+  outline: none;
+  background: rgba(5,18,38,.7);
+  color: #edf3ff;
+  font-family: inherit;
+  font-size: 13px;
+  transition: .2s ease;
+}
+
+.admin-edit-panel input:focus {
+  border-color: #6287ff;
+  box-shadow: 0 0 0 3px rgba(98,135,255,.12);
+}
+
+.admin-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.admin-cancel-button,
+.admin-save-button {
+  height: 38px;
+  padding: 0 15px;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-cancel-button {
+  border: 1px solid rgba(120,145,190,.25);
+  background: transparent;
+  color: inherit;
+}
+
+.admin-cancel-button:hover {
+  background: rgba(255,255,255,.06);
+}
+
+.admin-save-button {
+  border: 1px solid rgba(90,125,255,.6);
+  background: linear-gradient(135deg,#4f72e8,#6389ff);
+  color: white;
+  box-shadow: 0 5px 16px rgba(55,91,210,.25);
+}
+
+.admin-save-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 20px rgba(55,91,210,.35);
+}
+/* =========================================================
+   ADMIN PROFILE — FINAL CLEAN LAYOUT
+   ========================================================= */
+
+.admin-detail-panel {
+  width: min(380px, calc(100vw - 48px));
+  padding: 22px;
+  border: 1px solid rgba(92, 126, 190, 0.32);
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 34, 58, 0.98),
+      rgba(9, 22, 40, 0.98)
+    );
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  color: #eef4ff;
+  box-sizing: border-box;
+}
+
+.admin-detail-panel * {
+  box-sizing: border-box;
+}
+
+.admin-detail-panel .admin-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(130, 155, 195, 0.18);
+}
+
+.admin-detail-panel .admin-detail-user {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.admin-detail-panel .admin-detail-user > div:last-child {
+  min-width: 0;
+}
+
+.admin-detail-panel .admin-detail-user strong {
+  display: block;
+  margin: 0 0 4px;
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #f4f7ff;
+}
+
+.admin-detail-panel .admin-detail-user span {
+  display: block;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #8496b3;
+}
+
+.admin-detail-panel .admin-edit-button,
+.admin-detail-panel button {
+  flex: 0 0 auto;
+  border: 1px solid rgba(91, 126, 255, 0.55);
+  border-radius: 9px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #4e70e8, #6688ff);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.admin-detail-panel .admin-edit-button:hover,
+.admin-detail-panel button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(65, 101, 230, 0.28);
+}
+
+.admin-detail-panel .admin-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.admin-detail-panel .admin-detail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  min-height: 68px;
+  padding: 12px 13px;
+  border: 1px solid rgba(101, 128, 170, 0.18);
+  border-radius: 11px;
+  background: rgba(7, 20, 36, 0.48);
+}
+
+.admin-detail-panel .admin-detail-item > span,
+.admin-detail-panel .admin-detail-item > label {
+  display: block;
+  width: 100%;
+  margin: 0 0 7px;
+  color: #7488a7;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.admin-detail-panel .admin-detail-item > strong {
+  display: block;
+  width: 100%;
+  margin: 0;
+  color: #e8effc;
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 650;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.admin-detail-panel .admin-detail-item.status strong {
+  color: #55dfb0;
+}
+
+.admin-detail-panel .admin-detail-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(130, 155, 195, 0.16);
+  color: #8192ad;
+  font-size: 11px;
+}
+
+.admin-detail-panel .admin-detail-footer .connection-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+}
+
+/* Edit form */
+.admin-detail-panel .admin-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-detail-panel .admin-edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.admin-detail-panel .admin-edit-field label {
+  color: #8193b0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.admin-detail-panel .admin-edit-field input {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(100, 130, 175, 0.28);
+  border-radius: 9px;
+  outline: none;
+  background: rgba(5, 17, 32, 0.72);
+  color: #edf3ff;
+  font-size: 13px;
+}
+
+.admin-detail-panel .admin-edit-field input:focus {
+  border-color: #5f82ff;
+  box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.12);
+}
+
+.admin-detail-panel .admin-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 4px;
+}
+
+.admin-detail-panel .admin-cancel-button {
+  border: 1px solid rgba(120, 140, 170, 0.28);
+  background: rgba(255, 255, 255, 0.04);
+  color: #aab8cd;
+  box-shadow: none;
+}
+
+@media (max-width: 520px) {
+  .admin-detail-panel .admin-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-detail-panel {
+    width: calc(100vw - 32px);
+  }
+}
+
+
+/* =========================================================
+   ADMIN PROFILE — CLEAN PROFESSIONAL LAYOUT
+   ========================================================= */
+
+.admin-detail-panel {
+  width: min(380px, calc(100vw - 40px));
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(
+    145deg,
+    rgba(15, 31, 55, 0.98),
+    rgba(9, 23, 42, 0.98)
+  );
+  border: 1px solid rgba(91, 126, 210, 0.32);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(70, 105, 220, 0.08);
+  box-sizing: border-box;
+}
+
+.admin-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.admin-detail-avatar {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #4f72e8, #668cff);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 8px 22px rgba(79, 114, 232, 0.28);
+}
+
+.admin-detail-header-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.admin-detail-header-info strong {
+  display: block;
+  color: #f3f6ff;
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.admin-detail-header-info small {
+  display: block;
+  margin-top: 3px;
+  color: #8190aa;
+  font-size: 12px;
+}
+
+.admin-edit-button {
+  flex: 0 0 auto;
+  padding: 7px 13px;
+  border-radius: 8px;
+  border: 1px solid rgba(92, 126, 220, 0.45);
+  background: rgba(75, 108, 205, 0.12);
+  color: #9db5ff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 160ms ease;
+}
+
+.admin-edit-button:hover {
+  background: rgba(75, 108, 205, 0.24);
+  border-color: rgba(108, 143, 240, 0.7);
+  transform: translateY(-1px);
+}
+
+.admin-detail-divider {
+  height: 1px;
+  margin: 0 0 16px;
+  background: rgba(130, 155, 205, 0.14);
+}
+
+/* The important fix: every field gets its own clean row */
+.admin-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.admin-detail-item {
+  min-width: 0;
+  padding: 13px 14px;
+  border-radius: 11px;
+  background: rgba(20, 39, 67, 0.72);
+  border: 1px solid rgba(93, 124, 181, 0.16);
+  box-sizing: border-box;
+}
+
+.admin-detail-item .admin-detail-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #71829f;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.admin-detail-item .admin-detail-value {
+  display: block;
+  color: #e8edfa;
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.admin-detail-status {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+}
+
+.admin-detail-status .connection-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+}
+
+.admin-detail-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(130, 155, 205, 0.14);
+  color: #8291aa;
+  font-size: 11px;
+}
+
+.admin-detail-footer .connection-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+}
+
+@media (max-width: 520px) {
+  .admin-detail-panel {
+    width: calc(100vw - 28px);
+  }
+
+  .admin-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FINAL RESPONSIVE SIDEBAR FIX */
+@media (max-width: 760px) {
+  .app-shell .app-sidebar {
+    width: 76px !important;
+    min-width: 76px !important;
+  }
+
+  .app-shell .sidebar-label,
+  .app-shell .brand-text,
+  .app-shell .sidebar-nav-item span:not(.nav-icon),
+  .app-shell .connection-status div,
+  .app-shell .user-area div:not(.user-avatar) {
+    display: none !important;
+  }
+
+  /* Never allow the backend popup to overflow the collapsed sidebar */
+  .app-shell .status-popover {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Never show the admin popup while the sidebar is in compact mode */
+  .app-shell .admin-menu {
+    display: none !important;
+  }
+
+  .app-shell .sidebar-header,
+  .app-shell .sidebar-nav,
+  .app-shell .sidebar-footer {
+    align-items: center !important;
+  }
+
+  .app-shell .sidebar-nav-item,
+  .app-shell .connection-status,
+  .app-shell .user-area {
+    width: 48px !important;
+    min-width: 48px !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .app-shell .connection-status,
+  .app-shell .user-area {
+    height: 48px !important;
+  }
+
+  /* Keep the collapse button available */
+  .app-shell .sidebar-toggle {
+    display: grid !important;
+  }
+}
+
+/* =========================================================
+   SPLIT SCREEN / RESPONSIVE LAYOUT — CLEAN FIX
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .app-sidebar {
+    width: 76px !important;
+    min-width: 76px !important;
+    padding: 18px 10px !important;
+  }
+
+  .app-shell.sidebar-collapsed .app-sidebar {
+    width: 76px !important;
+    min-width: 76px !important;
+  }
+
+  /* Hide text when screen is narrow */
+  .brand-text,
+  .sidebar-label,
+  .sidebar-nav-item span:not(.nav-icon),
+  .connection-status div,
+  .user-area div:not(.user-avatar) {
+    display: none !important;
+  }
+
+  .sidebar-header {
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  .sidebar-nav {
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .sidebar-nav-item {
+    width: 48px !important;
+    height: 48px !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  .sidebar-nav-item .nav-icon {
+    margin: 0 !important;
+  }
+
+  .connection-status {
+    width: 48px !important;
+    min-width: 48px !important;
+    height: 48px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+
+  .connection-status .connection-dot {
+    margin: 0 !important;
+  }
+
+  .admin-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .user-area {
+    width: 48px !important;
+    min-width: 48px !important;
+    height: 48px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .sidebar-toggle {
+    display: grid !important;
+  }
+
+  .app-main {
+    min-width: 0 !important;
+    width: calc(100vw - 76px) !important;
+    overflow-x: hidden !important;
+  }
+
+  .app-header {
+    padding: 14px 18px !important;
+    gap: 10px !important;
+  }
+
+  .header-status {
+    display: none !important;
+  }
+
+  .app-content {
+    padding: 18px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Prevent dashboard cards from overflowing */
+  .metric-grid,
+  .dashboard-grid,
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* FINAL SPLIT-SCREEN SIDEBAR BEHAVIOR */
+@media (max-width: 760px) {
+
+  /* Expanded state */
+  .app-shell:not(.sidebar-collapsed) .app-sidebar {
+    width: 250px !important;
+    min-width: 250px !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .app-main {
+    width: calc(100vw - 250px) !important;
+  }
+
+  /* Collapsed state */
+  .app-shell.sidebar-collapsed .app-sidebar {
+    width: 76px !important;
+    min-width: 76px !important;
+  }
+
+  .app-shell.sidebar-collapsed .app-main {
+    width: calc(100vw - 76px) !important;
+  }
+
+  /* Restore sidebar content when expanded */
+  .app-shell:not(.sidebar-collapsed) .brand-text,
+  .app-shell:not(.sidebar-collapsed) .sidebar-label,
+  .app-shell:not(.sidebar-collapsed) .connection-status div,
+  .app-shell:not(.sidebar-collapsed) .user-area div:not(.user-avatar) {
+    display: block !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .sidebar-nav-item {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    padding: 0 14px !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .connection-status,
+  .app-shell:not(.sidebar-collapsed) .user-area {
+    width: 100% !important;
+  }
+
+  /* Keep the compact layout when actually collapsed */
+  .app-shell.sidebar-collapsed .brand-text,
+  .app-shell.sidebar-collapsed .sidebar-label,
+  .app-shell.sidebar-collapsed .connection-status div,
+  .app-shell.sidebar-collapsed .user-area div:not(.user-avatar) {
+    display: none !important;
+  }
+
+  .app-shell.sidebar-collapsed .sidebar-nav-item {
+    width: 48px !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  .app-shell.sidebar-collapsed .connection-status,
+  .app-shell.sidebar-collapsed .user-area {
+    width: 48px !important;
+  }
+}
+
+/* Restore sidebar labels when sidebar is expanded */
+@media (max-width: 760px) {
+
+  .app-shell:not(.sidebar-collapsed) .app-sidebar {
+    width: 250px !important;
+    min-width: 250px !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .brand-text {
+    display: flex !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .sidebar-label {
+    display: block !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .sidebar-nav-item span:not(.nav-icon) {
+    display: inline !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .connection-status div {
+    display: block !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .user-area div:not(.user-avatar) {
+    display: block !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .sidebar-toggle {
+    display: grid !important;
+  }
+}
+
+/* FINAL: keep sidebar footer controls clickable in split screen */
+@media (max-width: 760px) {
+
+  .app-shell:not(.sidebar-collapsed) .sidebar-footer {
+    position: relative !important;
+    z-index: 50 !important;
+    pointer-events: auto !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .connection-button {
+    position: relative !important;
+    z-index: 51 !important;
+    width: 100% !important;
+    min-height: 52px !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .admin-wrapper {
+    position: relative !important;
+    z-index: 52 !important;
+    width: 100% !important;
+    pointer-events: auto !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .user-button {
+    position: relative !important;
+    z-index: 53 !important;
+    width: 100% !important;
+    min-height: 52px !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  .app-shell:not(.sidebar-collapsed) .status-popover,
+  .app-shell:not(.sidebar-collapsed) .admin-menu {
+    position: absolute !important;
+    z-index: 100 !important;
+    pointer-events: auto !important;
   }
 }

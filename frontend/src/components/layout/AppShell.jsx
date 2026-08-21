@@ -23,6 +23,9 @@ export default function AppShell({
   const [darkMode, setDarkMode] = useState(true);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showAdminMenu, setShowAdminMenu] = useState(false);
+  const [editingAdmin, setEditingAdmin] = useState(false);
+  const [adminName, setAdminName] = useState("Admin");
+  const [adminRole, setAdminRole] = useState("Operations Manager");
   const [showBackendStatus, setShowBackendStatus] = useState(false);
   const [adminPanel, setAdminPanel] = useState(null);
 
@@ -47,7 +50,18 @@ export default function AppShell({
         <button
           className="sidebar-toggle"
           type="button"
-          onClick={() => setSidebarCollapsed((value) => !value)}
+          onClick={() => {
+            setSidebarCollapsed((value) => {
+              const nextValue = !value;
+
+              if (nextValue) {
+                setShowBackendStatus(false);
+                setShowAdminMenu(false);
+              }
+
+              return nextValue;
+            });
+          }}
         >
           {sidebarCollapsed ? "›" : "‹"}
         </button>
@@ -146,55 +160,118 @@ export default function AppShell({
             </button>
 
             {showAdminMenu && !sidebarCollapsed && (
-              <div className="admin-menu">
-                <div className="admin-menu-header">
-                  <div className="admin-menu-avatar">AD</div>
-                  <div>
-                    <strong>Admin</strong>
-                    <span>Operations Manager</span>
+            <div className="admin-menu">
+              {!editingAdmin ? (
+                <>
+                  <div className="admin-profile">
+                    <div className="user-avatar large">AD</div>
+
+                    <div className="admin-profile-info">
+                      <strong>{adminName}</strong>
+                      <span>{adminRole}</span>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="admin-edit-button"
+                      onClick={() => setEditingAdmin(true)}
+                    >
+                      Edit
+                    </button>
+                  </div>
+
+                  <div className="admin-menu-divider"></div>
+
+                  <div className="admin-profile-grid">
+                    <div>
+                      <small>ROLE</small>
+                      <strong>{adminRole}</strong>
+                    </div>
+
+                    <div>
+                      <small>ACCESS</small>
+                      <strong>Administrator</strong>
+                    </div>
+
+                    <div>
+                      <small>STATUS</small>
+                      <strong className="admin-active-status">
+                        <span></span>
+                        Active
+                      </strong>
+                    </div>
+
+                    <div>
+                      <small>SYSTEM</small>
+                      <strong>SmartInfra</strong>
+                    </div>
+                  </div>
+
+                  <div className="admin-menu-divider"></div>
+
+                  <div className="profile-status">
+                    <span className="connection-dot"></span>
+                    <span>Dashboard access active</span>
+                  </div>
+                </>
+              ) : (
+                <div className="admin-edit-panel">
+                  <div className="admin-edit-header">
+                    <div>
+                      <small>ACCOUNT</small>
+                      <h3>Edit Profile</h3>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="admin-close-edit"
+                      onClick={() => setEditingAdmin(false)}
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  <label>
+                    <span>Name</span>
+                    <input
+                      type="text"
+                      value={adminName}
+                      onChange={(e) => setAdminName(e.target.value)}
+                      placeholder="Enter name"
+                    />
+                  </label>
+
+                  <label>
+                    <span>Role</span>
+                    <input
+                      type="text"
+                      value={adminRole}
+                      onChange={(e) => setAdminRole(e.target.value)}
+                      placeholder="Enter role"
+                    />
+                  </label>
+
+                  <div className="admin-edit-actions">
+                    <button
+                      type="button"
+                      className="admin-cancel-button"
+                      onClick={() => setEditingAdmin(false)}
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      type="button"
+                      className="admin-save-button"
+                      onClick={() => setEditingAdmin(false)}
+                    >
+                      Save Changes
+                    </button>
                   </div>
                 </div>
-
-                <div className="admin-menu-divider"></div>
-
-                <button
-                  type="button"
-                  className={`admin-menu-item ${adminPanel === "profile" ? "active" : ""}`}
-                  onClick={() => setAdminPanel(
-                    adminPanel === "profile" ? null : "profile"
-                  )}
-                >
-                  <span className="admin-item-icon">◉</span>
-                  <span className="admin-item-content">
-                    <strong>Profile</strong>
-                    <small>Account and role information</small>
-                  </span>
-                  <span className="admin-item-arrow">›</span>
-                </button>
-
-                <button
-                  type="button"
-                  className={`admin-menu-item ${adminPanel === "preferences" ? "active" : ""}`}
-                  onClick={() => setAdminPanel(
-                    adminPanel === "preferences" ? null : "preferences"
-                  )}
-                >
-                  <span className="admin-item-icon">⚙</span>
-                  <span className="admin-item-content">
-                    <strong>Preferences</strong>
-                    <small>Appearance and dashboard settings</small>
-                  </span>
-                  <span className="admin-item-arrow">›</span>
-                </button>
-
-                <div className="admin-menu-divider"></div>
-
-                <div className="profile-status">
-                  <span className="connection-dot"></span>
-                  <span>Dashboard access active</span>
-                </div>
-              </div>
-            )}
+              )}
+            </div>
+          )}
           </div>
 
           {adminPanel && !sidebarCollapsed && (

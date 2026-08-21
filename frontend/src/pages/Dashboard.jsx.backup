@@ -49,10 +49,13 @@ const metrics = [
   },
 ];
 
-function MetricCard({ label, description }) {
+function MetricCard({ label, description, target, onNavigate }) {
   return (
-    <div
+    <button
       className="metric-card"
+      onClick={() => onNavigate(target)}
+      type="button"
+      title={`Open ${target}`}
     >
       <div className="metric-card-top">
         <span>{label}</span>
@@ -63,8 +66,8 @@ function MetricCard({ label, description }) {
 
       <p>{description}</p>
 
-      <span className="metric-action">View</span>
-    </div>
+      <span className="metric-action">View →</span>
+    </button>
   );
 }
 
@@ -94,6 +97,8 @@ export default function Dashboard({ onNavigate }) {
             key={metric.key}
             label={metric.label}
             description={metric.description}
+            target={metric.target}
+            onNavigate={onNavigate}
           />
         ))}
       </div>
