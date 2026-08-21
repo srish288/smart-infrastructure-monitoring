@@ -6,10 +6,130 @@ datasource db {
   provider = "postgresql"
 }
 
+enum DeviceSource {
+  HARDWARE
+  SIMULATOR
+}
+
+enum DeviceStatus {
+  ONLINE
+  OFFLINE
+  HEALTHY
+  WARNING
+  CRITICAL
+}
+
+enum LampState {
+  ON
+  OFF
+}
+
+enum SensorStatus {
+  OK
+  FAILURE
+}
+
+enum AlertSeverity {
+  INFO
+  WARNING
+  HIGH
+  CRITICAL
+}
+
+enum AlertType {
+  LAMP_FAILURE
+  OVERVOLTAGE
+  UNDERVOLTAGE
+  OVERCURRENT
+  OVERTEMPERATURE
+  SENSOR_FAILURE
+  DEVICE_OFFLINE
+  DEVICE_RECOVERY
+}
+
 model Streetlight {
   id        Int      @id @default(autoincrement())
   name      String
   location  String
   status    String   @default("ACTIVE")
   createdAt DateTime @default(now())
+}
+
+model Device {
+  id        Int          @id @default(autoincrement())
+  deviceId  String       @unique
+  name      String
+  latitude  Float
+  longitude Float
+  source    DeviceSource
+  status    DeviceStatus @default(OFFLINE)
+  lastSeen  DateTime?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  readings    TelemetryReading[]
+  alerts      Alert[]
+  faultEvents FaultEvent[]
+
+  @@index([status])
+  @@index([lastSeen])
+}
+
+model TelemetryReading {
+  id           Int          @id @default(autoincrement())
+  deviceId     String
+  timestamp    DateTime
+  source       DeviceSource
+  voltage      Float
+  current      Float
+  power        Float
+  illumination Float
+  lampState    LampState
+  temperature  Float
+  sensorStatus SensorStatus
+  createdAt    DateTime     @default(now())
+
+  device Device @relation(fields: [deviceId], references: [deviceId], onDelete: Cascade)
+
+  @@index([deviceId])
+  @@index([timestamp])
+}
+
+model Alert {
+  id           Int           @id @default(autoincrement())
+  deviceId     String
+  type         AlertType
+  severity     AlertSeverity
+  message      String
+  timestamp    DateTime      @default(now())
+  acknowledged Boolean       @default(false)
+  resolved     Boolean       @default(false)
+
+  device Device @relation(fields: [deviceId], references: [deviceId], onDelete: Cascade)
+
+  @@index([deviceId])
+  @@index([timestamp])
+  @@index([severity])
+}
+
+model FaultEvent {
+  id        Int       @id @default(autoincrement())
+  deviceId  String
+  type      AlertType
+  message   String
+  timestamp DateTime  @default(now())
+
+  device Device @relation(fields: [deviceId], references: [deviceId], onDelete: Cascade)
+
+  @@index([deviceId])
+  @@index([timestamp])
+}
+
+model SimulationScenario {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  enabled     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
